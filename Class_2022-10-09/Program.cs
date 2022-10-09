@@ -1,0 +1,97 @@
+﻿
+
+Console.Clear();
+void Init(int[,] matrix)
+{
+    Random rand = new Random();
+    for (int i = 0; i < matrix.GetLength(0); i++)
+        for (int j = 0; j < matrix.GetLength(1); j++)
+            matrix[i, j] = rand.Next(1, 9);
+}
+
+void ShowMatrix(int[,] matrix)
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+            Console.Write(matrix[i, j] + " \t");
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
+void ShowArray(int[] array)
+{
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write(array[i] + " \t");
+    }
+    Console.WriteLine();
+    Console.WriteLine();
+}
+
+int[] ToArray(int[,] matrix)
+{
+    int[] result = new int[ matrix.GetLength(0)* matrix.GetLength(1)];
+    int r=0;
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = i; j < matrix.GetLength(1); j++)
+        {
+            result[r++] = matrix[i,j];
+        }        
+    }
+    return result;
+}
+
+void Sort(int[] array)
+{
+    int indx; //переменная для хранения индекса минимального элемента массива
+    for (int i = 0; i < array.Length; i++) //проходим по массиву с начала и до конца
+    {
+        indx = i; //считаем, что минимальный элемент имеет текущий индекс 
+        for (int j = i; j < array.Length; j++) //ищем минимальный элемент в неотсортированной части
+        {
+            if (array[j] < array[indx])
+            {
+                indx = j; //нашли в массиве число меньше, чем intArray[indx] - запоминаем его индекс в массиве
+            }
+        }
+        if (array[indx] == array[i]) //если минимальный элемент равен текущему значению - ничего не меняем
+            continue;
+        //меняем местами минимальный элемент и первый в неотсортированной части
+        int temp = array[i]; //временная переменная, чтобы не потерять значение intArray[i]
+        array[i] = array[indx];
+        array[indx] = temp;
+    }
+}
+
+int GetCount(int value, int[] array, ref int start)
+{
+    int result = 0;
+    for (int i = start; i < array.Length; i++)
+        if(array[i] == value)
+        {
+            result++;
+            start=i;
+        }            
+    return result;
+}
+
+Console.Write("Enter n rows: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter n colomns: ");
+int m = Convert.ToInt32(Console.ReadLine());
+int[,] matrix = new int[n, m];
+Init(matrix);
+ShowMatrix(matrix);
+int[] array = ToArray(matrix);
+ShowArray(array);
+Sort(array);
+ShowArray(array);
+
+for(int i=0; i<array.Length; i++)
+{
+    Console.WriteLine($"value {array[i]} find {GetCount(array[i], array, ref i)} times");    
+}
+
+

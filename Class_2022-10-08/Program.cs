@@ -38,9 +38,9 @@ ShowMatrix(matrix);
 Console.Write($"Sum diagonal = {SumDiagonal(matrix)}");
 
 /*
-for(int i = 0; i < weight; i+=x )
-    for(int j = 0; j < weight; j+=y )
-        for(int k = 0; k < weight; k+=z )
-            if(i+j+k <= weight)
+for(int i = 0; i <= weight; i+=x )
+    for(int j = 0; j <= weight-i; j+=y )
+        for(int k = 0; k <= weight-i-j; k+=z )
+            if(i+j+k == weight)
                 count++;
 */
