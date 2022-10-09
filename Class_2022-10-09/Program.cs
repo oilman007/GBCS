@@ -72,7 +72,7 @@ int GetCount(int value, int[] array, ref int start)
         if(array[i] == value)
         {
             result++;
-            start=i;
+            start=i+1;
         }            
     return result;
 }
@@ -89,7 +89,7 @@ ShowArray(array);
 Sort(array);
 ShowArray(array);
 
-for(int i=0; i<array.Length; i++)
+for(int i=0; i<array.Length; )
 {
     Console.WriteLine($"value {array[i]} find {GetCount(array[i], array, ref i)} times");    
 }
