@@ -23,7 +23,7 @@ void ShowArray(int[] array)
 {
     for (int i = 0; i < array.Length; i++)
     {
-        Console.Write(array[i] + " \t");
+        Console.Write(array[i] + " ");
     }
     Console.WriteLine();
     Console.WriteLine();
@@ -35,7 +35,7 @@ int[] ToArray(int[,] matrix)
     int r=0;
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        for (int j = i; j < matrix.GetLength(1); j++)
+        for (int j = 0; j < matrix.GetLength(1); j++)
         {
             result[r++] = matrix[i,j];
         }        
