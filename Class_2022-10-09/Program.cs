@@ -1,6 +1,38 @@
-﻿
+﻿/*
+Задача 59: Из двумерного массива целых чисел удалить строку и столбец, на пересечении которых расположен наименьший элемент.
+*/
 
-Console.Clear();
+int[,] RemoveMin(int[,] matrix)
+{
+    int imin=0, jmin=0;
+    int min = matrix[0,0];
+    for (int i = 0; i < matrix.GetLength(0); i++)
+        for (int j = 0; j < matrix.GetLength(1); j++)
+            if(min > matrix[i,j])
+            {
+                min = matrix[i,j];
+                imin = i;
+                jmin = j;
+            }    
+    int[,] result = new int[matrix.GetLength(0)-1, matrix.GetLength(1)-1];
+    for (int i = 0, ii = 0; i < matrix.GetLength(0); i++)
+    {
+        if(i != imin)
+        {
+            for (int j = 0, jj = 0; j < matrix.GetLength(1); j++)
+            {
+                if(j != jmin)
+                {
+                    result[ii,jj] = matrix[i,j];
+                    jj++;
+                }
+            }
+            ii++;
+        }
+    }
+    return result;
+}
+
 void Init(int[,] matrix)
 {
     Random rand = new Random();
@@ -77,6 +109,8 @@ int GetCount(int value, int[] array, ref int start)
     return result;
 }
 
+
+Console.Clear();
 Console.Write("Enter n rows: ");
 int n = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter n colomns: ");
@@ -84,14 +118,6 @@ int m = Convert.ToInt32(Console.ReadLine());
 int[,] matrix = new int[n, m];
 Init(matrix);
 ShowMatrix(matrix);
-int[] array = ToArray(matrix);
-ShowArray(array);
-Sort(array);
-ShowArray(array);
-
-for(int i=0; i<array.Length; )
-{
-    Console.WriteLine($"value {array[i]} find {GetCount(array[i], array, ref i)} times");    
-}
-
+int[,] new_matrix = RemoveMin(matrix);
+ShowMatrix(new_matrix);
 
