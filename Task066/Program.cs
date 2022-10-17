@@ -7,8 +7,8 @@ M = 4; N = 8. -> 30
 
 int Sum(int m, int n)
 {
-    if(m==n)
-        return n;
+    if(m>n)
+        return 0;
     return n + Sum(m, n-1);
 }
 
