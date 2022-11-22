@@ -12,17 +12,13 @@ string values = Console.ReadLine();
 
 string[] split = values.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
 
-int n=0;
+
+string temp = string.Empty;
 for(int i =0; i<split.Length; ++i)
     if(split[i].Length <= 3)
-        n++;
+        temp += split[i] + " ";
 
-string[] result = new string[n];
-
-for(int i =0, j =0; i<split.Length; ++i)
-    if(split[i].Length <= 3)
-        result[j++] = split[i];
-
+string[] result = temp.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
 
 for(int i =0; i<result.Length; ++i)
     Console.Write($"{result[i]} ");
