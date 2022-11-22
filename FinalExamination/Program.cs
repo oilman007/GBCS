@@ -5,3 +5,13 @@
 При решениии не рекомендуется пользоваться коллекциями, лучше обойтись
 исключительно массивами.
 */
+
+
+Console.Write("Enter strings (separated by a space): ");
+string values = Console.ReadLine();
+
+string[] split = values.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
+
+for(int i =0; i<split.Length; ++i)
+    if(split[i].Length <= 3)
+        Console.Write(split[i]) + " ";
